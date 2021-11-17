@@ -1,7 +1,23 @@
 from django.db import models
 from django.conf import settings
-from .models import Movie
+    
+class Actor(models.Model):
+    name = models.CharField(max_length=50)
 
+class Genre(models.Model):
+    name = models.CharField(max_length=50)
+    
+class Movie(models.Model):
+    title = models.CharField(max_length=100)
+    overview = models.TextField()
+    release_date = models.DateField()
+    runtime = models.CharField(max_length=30)
+    vote_average = models.FloatField()
+    poster_path = models.TextField()
+    backdrop_path = models.TextField()
+    video = models.TextField()
+    actor = models.ManyToManyField(Actor, related_name='movies')
+    genre = models.ManyToManyField(Genre, related_name='movies')
 
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -14,7 +30,14 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
 
+class Rate(models.Model):
+    rate = models.FloatField()
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='rate')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='rate')
+
 class Comment(models.Model):
     content = models.TextField()
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
