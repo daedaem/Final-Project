@@ -32,8 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     #local
-    'community',
     'accounts',
+    'community',
+    'movies',
 
     'django.contrib.admin',
     'django.contrib.auth',

@@ -4,10 +4,11 @@ from . import views
 # from rest_framework_jwt.views import obtain_jwt_token
 
 
-app_name = 'accounts'
+app_name = 'community'
 
 urlpatterns = [
-    path('signup/', views.signup, name='signup'),
+    
+    # path('signup/', views.signup, name='signup'),
 #     path('login/', views.login, name='login'),
 #     path('logout/', views.logout, name='logout'),
 #     path('<username>/', views.profile, name='profile'),
